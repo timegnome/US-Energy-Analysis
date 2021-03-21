@@ -58,7 +58,13 @@ The other key structural issue is that the input and output files are stored in 
 
 A helpful checklist to gauge how your README is coming on what I would like to finish:
 
-- [ ] Lots of items! :)
+- [ ] Parsing of data for each energy data file
+- [ ] Cleaning of data for each energy data file
+- [ ] Storing useful tables into a Database in AWS or local server
+- [ ] Analysis of energy data using visual tools of choice
+- [ ] Mapping of the energy data for each energy type and total
+- [ ] Predictions of energy alternatives
+- [ ] Predictions of impacts from energy production sources
 
 ## Contributing
 
