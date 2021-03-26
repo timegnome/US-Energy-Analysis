@@ -25,22 +25,22 @@ totMonthly = pd.DataFrame(columns =['series_id', 'name', 'units',
 energyRegex = r'{"series_id":"([\w\.\-]+)","name":"([\w \,\:\(\)-]+)","units":"([\w \,]+)","f":"(\w+)","description":".+","iso3166":"([\w\-]+)","geography":".+","'
 dataRegex = r'(?:\["([\w\d]+)",((?:[\d\.]+)|(?:\w+))\](?:,|))'
 with open('../data/raw/COAL.json','r') as file:
-    line = file.readline()
-    while line:
-        match = re.findall(energyRegex,line)
-        data =  re.findall(dataRegex,line)
-        try:
-            if match[0][3] == 'A':
-                for d in data:
-                    totAnnual.loc[len(totAnnual.index)] = ([match[0][0],
-                        match[0][1],match[0][2],match[0][3],d[0],d[1]])
-            else:
-                for d in data:
-                    totMonthly.loc[len(totMonthly.index)] =([match[0][0],
-                        match[0][1],match[0][2],match[0][3],d[0],d[1]])
-        except:
-            None
-        line = file.readline()
+	line = file.readline()
+	while line:
+		match = re.findall(energyRegex,line)
+		data =  re.findall(dataRegex,line)
+		try:
+			if match[0][3] == 'A':
+				for d in data:
+					totAnnual.loc[len(totAnnual.index)] = ([match[0][0],
+						match[0][1],match[0][2],match[0][3],d[0],d[1]])
+			else:
+				for d in data:
+					totMonthly.loc[len(totMonthly.index)] =([match[0][0],
+						match[0][1],match[0][2],match[0][3],d[0],d[1]])
+		except:
+			print(data)
+		line = file.readline()
 
 totMonthly.to_csv('../data/processed/CoalM.csv',index = False)
 totAnnual.to_csv('../data/processed/CoalA.csv',index = False)

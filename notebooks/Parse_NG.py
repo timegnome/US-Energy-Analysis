@@ -31,30 +31,30 @@ totWeekly = pd.DataFrame(columns =['series_id', 'name', 'units',
 energyRegex = r'{"series_id":"([\w\.\-]+)","name":"([\w \,\:\(\)-]+)","units":"([\w \,]+)","f":"(\w+)","unitsshort":".+","iso3166":"([\w\-]+)","geography":".+","'
 dataRegex = r'(?:\["([\w\d]+)",((?:[\d\.]+)|(?:\w+))\](?:,|))'
 with open('../data/raw/NG.json','r') as file:
-    line = file.readline()
-    while line:
-        match = re.findall(energyRegex,line)
-        data =  re.findall(dataRegex,line)
-        try:
-            if match[0][3] == 'A':
-                for d in data:
-                    totAnnual.loc[len(totAnnual.index)] = ([match[0][0],
-                        match[0][1],match[0][2],match[0][3],d[0],d[1]])
-            elif match[0][3] == 'M':
-                for d in data:
-                    totMonthly.loc[len(totMonthly.index)] =([match[0][0],
-                        match[0][1],match[0][2],match[0][3],d[0],d[1]])
-            elif match[0][3] == 'W':
-                for d in data:
-                    totWeekly.loc[len(totWeekly.index)] =([match[0][0],
-                        match[0][1],match[0][2],match[0][3],d[0],d[1]])
-            else:
-                for d in data:
-                    totDaily.loc[len(totDaily.index)] =([match[0][0],
-                        match[0][1],match[0][2],match[0][3],d[0],d[1]])
-        except:
-            None
-        line = file.readline()
+	line = file.readline()
+	while line:
+		match = re.findall(energyRegex,line)
+		data =  re.findall(dataRegex,line)
+		try:
+			if match[0][3] == 'A':
+				for d in data:
+					totAnnual.loc[len(totAnnual.index)] = ([match[0][0],
+						match[0][1],match[0][2],match[0][3],d[0],d[1]])
+			elif match[0][3] == 'M':
+				for d in data:
+					totMonthly.loc[len(totMonthly.index)] =([match[0][0],
+						match[0][1],match[0][2],match[0][3],d[0],d[1]])
+			elif match[0][3] == 'W':
+				for d in data:
+					totWeekly.loc[len(totWeekly.index)] =([match[0][0],
+						match[0][1],match[0][2],match[0][3],d[0],d[1]])
+			else:
+				for d in data:
+					totDaily.loc[len(totDaily.index)] =([match[0][0],
+						match[0][1],match[0][2],match[0][3],d[0],d[1]])
+		except:
+			None
+		line = file.readline()
 
 totMonthly.to_csv('../data/processed/NGM.csv',index = False)
 totAnnual.to_csv('../data/processed/NGA.csv',index = False)
