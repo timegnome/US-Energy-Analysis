@@ -39,7 +39,6 @@ with open('../data/raw/TOTAL.json','r') as file:
 						match[0][1],match[0][2],match[0][3],d[0],d[1]])
 		except:
 			None
-		break
 		line = file.readline()
 
 totMonthly.to_csv('../data/processed/TOTALM.csv',index = False)
